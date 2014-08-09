@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title census 
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href="/js/libs/bootstrap/dist/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    script(src="/lib/pace/pace.min.js")
+
+  body
+    .container
+        block content
+
+    script(src="/js/libs/requirejs/require.js" data-main="/js/config")
+    block js
