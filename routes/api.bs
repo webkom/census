@@ -1,7 +1,31 @@
 import express
 import request
+import redis
 
 router = express.Router()
+r = redis.createClient()
 
+ERRORS = {
+    redis: 'Could not store in Redis.'
+    payload: 'Payload does not contain the required information.'
+}
+
+router.post('/report', (req, res) ->
+    if req.param('hostname') and req.param('username')
+        server = {
+            hostname: req.param('hostname')
+            username: req.param('username')
+            ip: req.ip
+            timestamp: Date.now()
+        }
+        r.hset('servers', server.hostname, JSON.stringify(server), (err, redisRes) ->
+            if err
+                res.json(500, { error: ERRORS.redis })
+
+            res.json({ server: server })
+        )
+    else
+        res.json(400, { error: ERRORS.payload })
+)
 
 export router

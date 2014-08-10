@@ -1,0 +1,68 @@
+import should
+import chai: expect
+import assert
+import supertest as request
+import redis
+
+import ../app
+
+r = redis.createClient()
+
+describe('API', () ->
+    describe('/report', () ->
+        requestData = {
+            hostname: 'luke.abakus.no'
+            username: 'abakus'
+        }
+
+        it('should respond with json', (done) ->
+            request(app)
+                .post('/api/report')
+                .expect('Content-Type', /json/, done)
+        ) 
+
+        it('should respond with error no data is attached', (done) ->
+            request(app)
+                .post('/api/report')
+                .expect(400, done)
+        ) 
+
+        it('should respond with success when correct data is attached', (done) ->
+            request(app)
+                .post('/api/report')
+                .send(requestData)
+                .expect(200)
+                .end((err, res) ->
+                    if err
+                        return done(err)
+
+                    response = JSON.parse(res.text).server
+                    expect(response.hostname).to.equal('luke.abakus.no')
+                    done()
+                )
+        ) 
+
+        it('should save data in redis', (done) ->
+            r.hdel('servers', 'luke.abakus.no')
+            request(app)
+                .post('/api/report')
+                .send(requestData)
+                .expect(200)
+                .end((err, res) ->
+                    if err
+                        return done(err)
+
+                    expect(r.hexists('servers', 'luke.abakus.no')).to.be.ok
+                    r.hget('servers', 'luke.abakus.no', (err, data) ->
+                        data = JSON.parse(data)
+                        expect(data.hostname).to.equal('luke.abakus.no')
+                        expect(data.username).to.equal('abakus')
+                        expect(data.ip).to.equal('127.0.0.1')
+                        expect(data.timestamp).to.be.below(Date.now())
+                        expect(data.timestamp).to.be.above(Date.now() - 1000 * 5)
+                        done()
+                    )
+                )
+        )
+    )
+)
