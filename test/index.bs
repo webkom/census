@@ -1,0 +1,58 @@
+import should
+import chai: expect
+import assert
+import supertest as request
+import redis
+
+import ../app
+
+r = redis.createClient()
+
+describe('GET /', () ->
+    servers = [
+        {
+            hostname: 'luke.abakus.no'
+            username: 'abakus'
+            ip: '127.0.0.1'
+        },
+        {
+            hostname: 'leia.abakus.no'
+            username: 'abakus'
+            ip: '127.0.0.1'
+        }
+    ]
+
+    beforeEach((done) ->
+        for server in servers
+            r.hset('servers', server.hostname, JSON.stringify(server))
+        done()
+    )
+    afterEach((done) ->
+        done()
+        for server in servers
+            r.hdel('servers', server.hostname)
+        done()
+    )
+
+    it('should respond html and status 200', (done) ->
+        request(app)
+            .get('/')
+            .expect(200)
+            .expect('Content-Type', /html/, done)
+    )
+
+    it('should list the servers', (done) ->
+        request(app)
+            .get('/')
+            .expect(200)
+            .end((err, res) ->
+                if err
+                    done(err)
+                for server in servers
+                    expect(res.text).to.contain(server.hostname)
+                    expect(res.text).to.contain(server.username)
+                    expect(res.text).to.contain(server.ip)
+                done()
+            )
+    )
+)

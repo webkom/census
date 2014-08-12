@@ -1,7 +1,27 @@
 import debug
+import redis
+
 import ./app
 
 debug = debug('census.abakus.no')
+
+servers = [
+    {
+        hostname: 'luke.abakus.no'
+        username: 'abakus'
+        ip: '127.0.0.1'
+    },
+    {
+        hostname: 'leia.abakus.no'
+        username: 'abakus'
+        ip: '127.0.0.1'
+    }
+]
+
+r = redis.createClient()
+
+for server in servers
+    r.hset('servers', server.hostname, JSON.stringify(server))
 
 app.set('port', process.env.PORT or 3000)
 

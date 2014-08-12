@@ -1,8 +1,12 @@
 extends layout
 
 block content
-  ul
+  ul.servers.list-unstyled
     for server in servers
-      li server
+      li.col-xs-6.col-sm-4.col-md-3.col-lg-2.text-center
+        .fa.fa-hdd-o.fa-5x
+        h3 #{server.hostname}
+        div.ip #{server.ip}
+        div.user #{server.username}
 
       
