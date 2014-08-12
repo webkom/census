@@ -10,6 +10,21 @@ ERRORS = {
     payload: 'Payload does not contain the required information.'
 }
 
+router.get('/servers', (req, res) ->
+    r.hgetall('servers', (err, redisRes) ->
+        if err
+            res.json({error: err})
+
+        servers = []
+        redisRes = redisRes or {}
+
+        for server in Object.keys(redisRes)
+            servers.push(JSON.parse(redisRes[server]))
+
+        res.json({ servers: servers })
+    )
+)
+
 router.post('/report', (req, res) ->
     if req.param('hostname') and req.param('username')
         server = {

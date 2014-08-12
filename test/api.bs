@@ -9,12 +9,55 @@ import ../app
 r = redis.createClient()
 
 describe('API', () ->
-    describe('/report', () ->
-        requestData = {
-            hostname: 'luke.abakus.no'
-            username: 'abakus'
-        }
+    requestData = {
+        hostname: 'luke.abakus.no'
+        username: 'abakus'
+    }
 
+    describe('/servers', () ->
+        beforeEach((done) ->
+            r.hdel('servers', 'luke.abakus.no')
+            r.hdel('servers', 'leia.abakus.no')
+            done()
+        )
+        it('should respond with json', (done) ->
+            request(app)
+                .get('/api/servers')
+                .expect('Content-Type', /json/, done)
+        )
+
+        it('should return empty list when redis is empty', (done) ->
+            request(app)
+                .get('/api/servers')
+                .expect(200)
+                .end((err, res) ->
+                    if err
+                        return done(err)
+
+                    expect(res.body.servers.length).to.equal(0)
+                    done()
+                )
+        )
+
+        it('should object with data stored in redis ', (done) ->
+            r.hset('servers', 'luke.abakus.no', JSON.stringify(requestData))
+            r.hset('servers', 'leia.abakus.no', JSON.stringify(requestData))
+            request(app)
+                .get('/api/servers')
+                .expect(200)
+                .end((err, res) ->
+                    if err
+                        return done(err)
+
+                    expect(res.body.servers.length).to.equal(2)
+                    expect(res.body.servers[0].username).to.equal('abakus')
+                    expect(res.body.servers[1].username).to.equal('abakus')
+                    done()
+                )
+        )
+    )
+
+    describe('/report', () ->
         it('should respond with json', (done) ->
             request(app)
                 .post('/api/report')
@@ -36,8 +79,7 @@ describe('API', () ->
                     if err
                         return done(err)
 
-                    response = JSON.parse(res.text).server
-                    expect(response.hostname).to.equal('luke.abakus.no')
+                    expect(res.body.server.hostname).to.equal('luke.abakus.no')
                     done()
                 )
         ) 
