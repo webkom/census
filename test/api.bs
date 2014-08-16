@@ -13,13 +13,11 @@ describe('API', () ->
         hostname: 'luke.abakus.no'
         username: 'abakus'
     }
+    beforeEach((done) ->
+        r.flushall(done)
+    )
 
     describe('/servers', () ->
-        beforeEach((done) ->
-            r.hdel('servers', 'luke.abakus.no')
-            r.hdel('servers', 'leia.abakus.no')
-            done()
-        )
         it('should respond with json', (done) ->
             request(app)
                 .get('/api/servers')

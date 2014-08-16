@@ -28,10 +28,7 @@ describe('GET /', () ->
         done()
     )
     afterEach((done) ->
-        done()
-        for server in servers
-            r.hdel('servers', server.hostname)
-        done()
+        r.flushall(done)
     )
 
     it('should respond html and status 200', (done) ->
@@ -41,6 +38,12 @@ describe('GET /', () ->
             .expect('Content-Type', /html/, done)
     )
 
+    it('should respond status 200 when redis is empty', (done) ->
+        r.flushall()
+        request(app)
+            .get('/')
+            .expect(200, done)
+    )
     it('should list the servers', (done) ->
         request(app)
             .get('/')

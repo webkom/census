@@ -1,0 +1,19 @@
+import should
+import chai: expect
+import assert
+import supertest as request
+import redis
+
+import ../app
+
+r = redis.createClient()
+
+describe('App', () ->
+    describe('error handling', () ->
+        it('should respond with 404 when page is not found', (done) ->
+            request(app)
+                .get('/404')
+                .expect(404, done)
+        )
+    )
+)
