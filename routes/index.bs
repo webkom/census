@@ -11,8 +11,11 @@ router.get('/', (req, res) ->
         servers = []
         redisRes = redisRes or {}
 
-        for server in Object.keys(redisRes)
-            servers.push(JSON.parse(redisRes[server]))
+        for serverId in Object.keys(redisRes)
+            server = JSON.parse(redisRes[serverId])
+            server.isOk = server.timestamp > Date.now() - (24 * 60 * 60 * 1000)
+            servers.push(server)
+
 
         res.render('index', {
             servers: servers
