@@ -1,7 +1,10 @@
 # census
-Headcount for our servers.
+Headcount for our servers. It is a little web project based on express.js, which
+lists servers based on pings to its API. The servers themselves need to report
+to be shown in the list. However, it is not necessary to attach more than hostname
+and a username in the POST request.
 
-### Usage
+### Reporting
 ```bash
 curl -X POST http://census.abakus.no/api/report --data "hostname=<hostname>&username=<username>"
 ```
