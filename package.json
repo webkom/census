@@ -36,6 +36,7 @@
     "gulp-nodemon": "^1.0.4",
     "gulp-stylus": "^1.0.1",
     "gulp-util": "^2.2.14",
+    "istanbul": "^0.3.0",
     "mocha": "^1.21.4",
     "request": "^2.40.0",
     "should": "^4.0.4",
