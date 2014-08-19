@@ -1,4 +1,6 @@
 # census
+[![Build Status](https://travis-ci.org/webkom/census.svg)](https://travis-ci.org/webkom/census)
+
 Headcount for our servers. It is a little web project based on express.js, which
 lists servers based on pings to its API. The servers themselves need to report
 to be shown in the list. However, it is not necessary to attach more than hostname
