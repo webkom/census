@@ -2,22 +2,9 @@ import debug
 import redis
 
 import ./app
+import ./dummy: servers
 
 debug = debug('census.abakus.no')
-
-servers = [
-    {
-        hostname: 'luke.abakus.no'
-        username: 'abakus'
-        ip: '127.0.0.1'
-    },
-    {
-        hostname: 'leia.abakus.no'
-        username: 'abakus'
-        ip: '127.0.0.1'
-    }
-]
-
 r = redis.createClient()
 
 for server in servers

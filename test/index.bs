@@ -5,28 +5,17 @@ import supertest as request
 import redis
 
 import ../app
+import ../dummy: servers
 
 r = redis.createClient()
 
 describe('GET /', () ->
-    servers = [
-        {
-            hostname: 'luke.abakus.no'
-            username: 'abakus'
-            ip: '127.0.0.1'
-        },
-        {
-            hostname: 'leia.abakus.no'
-            username: 'abakus'
-            ip: '127.0.0.1'
-        }
-    ]
-
     beforeEach((done) ->
         for server in servers
             r.hset('servers', server.hostname, JSON.stringify(server))
         done()
     )
+
     afterEach((done) ->
         r.flushall(done)
     )
@@ -44,6 +33,7 @@ describe('GET /', () ->
             .get('/')
             .expect(200, done)
     )
+
     it('should list the servers', (done) ->
         request(app)
             .get('/')
