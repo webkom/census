@@ -7,8 +7,9 @@ import ./dummy: servers
 debug = debug('census.abakus.no')
 r = redis.createClient()
 
-for server in servers
-    r.hset('servers', server.hostname, JSON.stringify(server))
+if app.get('env') != 'production'
+    for server in servers
+        r.hset('servers', server.hostname, JSON.stringify(server))
 
 app.set('port', process.env.PORT or 3000)
 
