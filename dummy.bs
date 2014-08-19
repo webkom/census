@@ -1,0 +1,16 @@
+export {
+    servers: [
+        {
+            hostname: 'luke.abakus.no'
+            username: 'abakus'
+            ip: '127.0.0.1'
+            timestamp: Date.now()
+        },
+        {
+            hostname: 'leia.abakus.no'
+            username: 'abakus'
+            ip: '127.0.0.1'
+            timestamp: Date.now() - (25 * 60 * 60 * 1000)
+        }
+    ]
+}
