@@ -13,7 +13,7 @@ router.get('/', (req, res) ->
 
         for serverId in Object.keys(redisRes)
             server = JSON.parse(redisRes[serverId])
-            server.isOk = server.timestamp > Date.now() - (24 * 60 * 60 * 1000)
+            server.isOk = server.timestamp > Date.now() - (15 * 60 * 1000)
             servers.push(server)
 
 
