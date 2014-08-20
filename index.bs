@@ -1,11 +1,11 @@
 import debug
-import redis
 
+import ./redis
 import ./app
 import ./dummy: servers
 
 debug = debug('census.abakus.no')
-r = redis.createClient()
+r = redis.client()
 
 if app.get('env') != 'production'
     for server in servers

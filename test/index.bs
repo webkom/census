@@ -2,12 +2,12 @@ import should
 import chai: expect
 import assert
 import supertest as request
-import redis
 
+import ../redis
 import ../app
 import ../dummy: servers
 
-r = redis.createClient()
+r = redis.client()
 
 describe('GET /', () ->
     beforeEach((done) ->

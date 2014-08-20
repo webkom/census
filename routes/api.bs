@@ -1,9 +1,10 @@
 import express
 import request
-import redis
+
+import ../redis
 
 router = express.Router()
-r = redis.createClient()
+r = redis.client()
 
 ERRORS = {
     redis: 'Could not store in Redis.'

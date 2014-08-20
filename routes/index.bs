@@ -1,9 +1,9 @@
 import express
 import request
-import redis
 
-r = redis.createClient()
+import ../redis
 
+r = redis.client()
 router = express.Router()
 
 router.get('/', (req, res) ->

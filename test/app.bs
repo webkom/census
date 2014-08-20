@@ -2,11 +2,8 @@ import should
 import chai: expect
 import assert
 import supertest as request
-import redis
 
 import ../app
-
-r = redis.createClient()
 
 describe('App', () ->
     describe('error handling', () ->

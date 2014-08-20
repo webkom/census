@@ -1,0 +1,13 @@
+import redis
+export {
+    client: () ->
+        if process.env.NODE_ENV == 'production'
+            client = redis.createClient(6379, 'leia.abakus.no', {})
+        else
+            client = redis.createClient(6379, '127.0.0.1', {})
+
+        password = process.env.REDIS_PASSWORD
+        if password
+            client.auth(password)
+        return client
+}
