@@ -17,7 +17,13 @@ html
                 
       .row
         block content
-    .navbar.navbar-fixed-bottom: .container.text-center Made by 
+    .navbar.navbar-fixed-bottom: .container.text-center
+      if authenticated
+        a(href="/auth/logout") Logout
+      else
+        a(href="/auth/login") Login
+      span.thin &nbsp;|&nbsp;
+      span Made by
       a(href="http://webkom.abakus.no") webkom
       span.thin &nbsp;|&nbsp;
       a(href="https://github.com/webkom/census") Fork me on Github 

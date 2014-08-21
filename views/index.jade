@@ -9,7 +9,6 @@ block content
         else
           .fa.fa-hdd-o.fa-5x.red
         h3 #{server.hostname}
-        div.ip #{server.ip}
-        div.user #{server.username}
-
-      
+        if authenticated
+          div.ip #{server.ip}
+          div.user #{server.username}

@@ -10,12 +10,13 @@ router.get('/', (req, res) ->
     r.hgetall('servers', (err, redisRes) ->
         servers = []
         redisRes = redisRes or {}
+        authenticated = req.isAuthenticated()
 
         for serverId in Object.keys(redisRes)
             server = JSON.parse(redisRes[serverId])
-            server.isOk = server.timestamp > Date.now() - (15 * 60 * 1000)
-            servers.push(server)
-
+            if authenticated or server.username == 'abakus'
+                server.isOk = server.timestamp > Date.now() - (15 * 60 * 1000)
+                servers.push(server)
 
         res.render('index', {
             servers: servers
