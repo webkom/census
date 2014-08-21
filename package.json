@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "test": "istanbul cover node_modules/.bin/_mocha",
+    "test": "ABAKUS_TOKEN=test istanbul cover node_modules/.bin/_mocha",
     "coveralls": "npm test && node node_modules/.bin/coveralls < coverage/lcov.info"
   },
   "dependencies": {
