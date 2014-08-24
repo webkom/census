@@ -3,13 +3,13 @@ extends layout
 block content
   ul.servers.list-unstyled
     for server in servers
-      li.col-xs-12.col-sm-4.col-lg-3.text-center
-        if server.isOk
-          .fa.fa-hdd-o.fa-5x.green
-        else
-          .fa.fa-hdd-o.fa-5x.red
-        h3 #{server.hostname}
-        div.ip #{server.ip}
-        div.user #{server.username}
-
-      
+      li.row
+        .icon-container.col-xs-4
+          if server.isOk
+            .fa.fa-hdd-o.fa-5x.green
+          else
+            .fa.fa-hdd-o.fa-5x.red
+        .col-xs-8
+          h3 #{server.hostname}
+          div.ip #{server.ip}
+          div.user #{server.username}
