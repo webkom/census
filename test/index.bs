@@ -55,7 +55,7 @@ describe('GET /', () ->
                 if err
                     done(err)
                 expect(res.text).to.contain('green')
-                expect(res.text).to.contain('green')
+                expect(res.text).to.contain('red')
                 done()
             )
     )
