@@ -11,5 +11,6 @@ block content
             .fa.fa-hdd-o.fa-5x.red
         .col-xs-8
           h3 #{server.hostname}
-          div.ip #{server.ip}
-          div.user #{server.username}
+          if authenticated
+            div.ip #{server.ip}
+            div.user #{server.username}

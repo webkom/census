@@ -43,8 +43,6 @@ describe('GET /', () ->
                     done(err)
                 for server in servers
                     expect(res.text).to.contain(server.hostname)
-                    expect(res.text).to.contain(server.username)
-                    expect(res.text).to.contain(server.ip)
                 done()
             )
     )

@@ -1,0 +1,27 @@
+import should
+import chai: expect
+import assert
+import supertest as request
+
+import ../app
+
+describe('GET /auth/login', () ->
+    url = '/auth/login'
+
+    it('should respond html and status 200', (done) ->
+        request(app)
+            .get(url)
+            .expect(200)
+            .expect('Content-Type', /html/, done)
+    )
+)
+
+describe('GET /auth/logout', () ->
+    url = '/auth/logout'
+
+    it('should redirect', (done) ->
+        request(app)
+            .get(url)
+            .expect(302, done)
+    )
+)
