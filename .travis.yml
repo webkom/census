@@ -15,6 +15,6 @@ services:
 notifications:
   webhooks:
     urls:
-      - http://78.91.0.217:3000/api/github
+      - http://78.91.0.217:3000/api/travis
     on_success: always
-    on_failure: never  
+    on_failure: never
