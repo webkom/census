@@ -7,7 +7,14 @@ before_script:
   - gulp
 
 script:
-  - npm run-script coveralls 
+  - npm run-script coveralls
 
 services:
   - redis-server
+
+notifications:
+  webhooks:
+    urls:
+      - http://78.91.0.217:3000/api/github
+    on_success: always
+    on_failure: never  
