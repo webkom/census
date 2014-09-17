@@ -1,5 +1,4 @@
 import express
-import express-flash as flash
 import cookie-session as session
 import path
 import morgan as logging
@@ -8,6 +7,7 @@ import body-parser as bodyParser
 import request
 import passport
 import passport-abakus as passportAbakus
+import passport-memcached as passportMemcached
 
 import ./routes/api
 import ./routes/index
@@ -30,8 +30,8 @@ app.use(session({ cookie: { maxAge: 60000 }, secret: 'This is top secret'}))
 
 if app.get('abakus token') 
     passport.use(passportAbakus.abakusStrategy())
-    passport.serializeUser(passportAbakus.serializeAbakusUser)
-    passport.deserializeUser(passportAbakus.deserializeAbakusUser)
+    passport.serializeUser(passportMemcached.memcachedSerializeUser)
+    passport.deserializeUser(passportMemcached.memcachedDeserializeUser)
 
     app.use(passport.initialize())
     app.use(passport.session())
