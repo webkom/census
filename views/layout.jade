@@ -1,7 +1,10 @@
+mixin sep
+  span.thin  |   
+    
 doctype html
 html
   head
-    title census 
+    title census
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='description', content='')
@@ -14,7 +17,7 @@ html
   body
     .container
       .header.row: .col-xs-12 census
-                
+
       .row
         block content
     .navbar.navbar-fixed-bottom: .container.text-center
@@ -22,10 +25,10 @@ html
         a(href="/auth/logout") Logout
       else
         a(href="/auth/login") Login
-      span.thin &nbsp;|&nbsp;
-      span Made by&nbsp;
-      a(href="http://webkom.abakus.no") webkom
-      span.thin &nbsp;|&nbsp;
-      a(href="https://github.com/webkom/census") Fork me on Github 
+      +sep
+      | Made by  
+      a(href="http://webkom.abakus.no") webkom 
+      +sep
+      a(href="https://github.com/webkom/census") Fork me on Github
 
     block js
