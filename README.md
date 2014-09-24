@@ -6,9 +6,12 @@ lists servers based on pings to its API. The servers themselves need to report
 to be shown in the list. However, it is not necessary to attach more than hostname
 and a username in the POST request.
 
+If more than 15 minutes pass without a report, your server will show up as dead.
+
 ### Reporting
+The easiest way to report to Census is to set up a cron job that reports every ten mintues to Census. 
 ```bash
-curl -X POST http://census.abakus.no/api/report --data "hostname=<hostname>&username=<username>"
+curl -X POST https://census.abakus.no/api/report --data "hostname={hostname}&username={username}"
 ```
 
 ## Setup
