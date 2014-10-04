@@ -24,7 +24,7 @@
     "morgan": "^1.0.1",
     "nib": "^1.0.3",
     "passport": "^0.2.0",
-    "passport-abakus": "^0.1.0",
+    "passport-abakus": "^0.2.0",
     "passport-memcached": "^0.2.0",
     "redis": "^0.12.0",
     "request": "^2.36.0",

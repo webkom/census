@@ -29,7 +29,7 @@ app.use(cookieParser())
 app.use(session({ cookie: { maxAge: 60000 }, secret: 'This is top secret'}))
 
 if app.get('abakus token') 
-    passport.use(passportAbakus.abakusStrategy())
+    passport.use(passportAbakus())
     passport.serializeUser(passportMemcached.memcachedSerializeUser)
     passport.deserializeUser(passportMemcached.memcachedDeserializeUser)
 
