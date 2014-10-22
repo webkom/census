@@ -1,11 +1,13 @@
+BIN = node_modules/.bin
+
 all: node_modules
 
 node_modules:
 	npm install
 
-update:
+production:
 	git fetch && git reset --hard origin/master
 	npm install
-	node_modules/.bin/gulp
-
-production: update
+	bower install
+	$(BIN)/gulp
+	forever restart index.js
