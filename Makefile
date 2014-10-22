@@ -9,4 +9,4 @@ production:
 	git fetch && git reset --hard origin/master
 	npm install
 	$(BIN)/gulp
-	forever restart index.js
+	forever restart $(PWD)/index.js
