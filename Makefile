@@ -8,6 +8,5 @@ node_modules:
 production:
 	git fetch && git reset --hard origin/master
 	npm install
-	bower install
 	$(BIN)/gulp
 	forever restart index.js
