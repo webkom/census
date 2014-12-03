@@ -15,4 +15,4 @@ test: node_modules
 	$(BIN)/gulp
 	npm test
 
-.PHONY: all production test
+.PHONY: all node_modules production test
