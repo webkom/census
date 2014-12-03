@@ -1,0 +1,6 @@
+export {
+    ABAKUS_TOKEN: process.env.ABAKUS_TOKEN
+    TIMEOUT: process.env.CENSUS_TIMEOUT or 15 * 60 * 1000 
+    REMOVAL_TIMEOUT: process.env.CENSUS_REMOVAL_TIMEOUT or 7 * 24 * 60 * 60 * 1000
+    ORG_USER: process.env.ORG_USER or 'abakus' 
+}
