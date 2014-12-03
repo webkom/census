@@ -1,6 +1,7 @@
 import express
 import request
 
+import ../config
 import ../redis
 
 r = redis.client()
@@ -14,9 +15,12 @@ router.get('/', (req, res) ->
 
         for serverId in Object.keys(redisRes)
             server = JSON.parse(redisRes[serverId])
-            if authenticated or server.username == 'abakus'
-                server.isOk = server.timestamp > Date.now() - (15 * 60 * 1000)
-                servers.push(server)
+            if not authenticated and server.username != config.ORG_USER
+                continue
+            if server.timestamp < Date.now() - config.REMOVAL_TIMEOUT
+                continue
+            server.isOk = server.timestamp > Date.now() - config.TIMEOUT
+            servers.push(server)
 
         res.render('index', {
             servers: servers

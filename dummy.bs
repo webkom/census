@@ -1,4 +1,4 @@
-import ./app
+import ./config
 export {
     servers: [
         {
@@ -11,7 +11,19 @@ export {
             hostname: 'leia.abakus.no'
             username: 'abakus'
             ip: '127.0.0.1'
-            timestamp: Date.now() - app.get('timedelta')
+            timestamp: Date.now() - config.TIMEOUT
+        },
+        {
+            hostname: 'coffee.abakus.no'
+            username: 'abakus'
+            ip: '127.0.0.1'
+            timestamp: Date.now() - config.REMOVAL_TIMEOUT
+        },
+        {
+            hostname: 'ron.lkng.me'
+            username: 'rolferl'
+            ip: '127.0.0.1'
+            timestamp: Date.now()
         }
     ]
 }

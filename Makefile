@@ -10,3 +10,9 @@ production:
 	npm install
 	$(BIN)/gulp
 	forever restart $(PWD)/index.js
+
+test: node_modules
+	$(BIN)/gulp
+	npm test
+
+.PHONY: all production test
