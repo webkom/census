@@ -41,8 +41,19 @@ describe('GET /', () ->
             .end((err, res) ->
                 if err
                     done(err)
-                for server in servers
-                    expect(res.text).to.contain(server.hostname)
+                expect(res.text).to.contain('luke.abakus.no')
+                expect(res.text).to.contain('leia.abakus.no')
+                done()
+            )
+    )
+    it('should hide private servers', (done) ->
+        request(app)
+            .get('/')
+            .expect(200)
+            .end((err, res) ->
+                if err
+                    done(err)
+                expect(res.text).to.not.contain('lkng.me')
                 done()
             )
     )
@@ -56,6 +67,18 @@ describe('GET /', () ->
                     done(err)
                 expect(res.text).to.contain('green')
                 expect(res.text).to.contain('red')
+                done()
+            )
+    )
+
+    it('should hide old nodes', (done) ->
+        request(app)
+            .get('/')
+            .expect(200)
+            .end((err, res) ->
+                if err
+                    done(err)
+                expect(res.text).to.not.contain('coffee')
                 done()
             )
     )

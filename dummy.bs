@@ -12,6 +12,18 @@ export {
             username: 'abakus'
             ip: '127.0.0.1'
             timestamp: Date.now() - app.get('timedelta')
+        },
+        {
+            hostname: 'coffee.abakus.no'
+            username: 'abakus'
+            ip: '127.0.0.1'
+            timestamp: Date.now() - app.get('timedelta-hide')
+        },
+        {
+            hostname: 'ron.lkng.me'
+            username: 'rolferl'
+            ip: '127.0.0.1'
+            timestamp: Date.now()
         }
     ]
 }

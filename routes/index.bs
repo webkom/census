@@ -14,9 +14,12 @@ router.get('/', (req, res) ->
 
         for serverId in Object.keys(redisRes)
             server = JSON.parse(redisRes[serverId])
-            if authenticated or server.username == 'abakus'
-                server.isOk = server.timestamp > Date.now() - (15 * 60 * 1000)
-                servers.push(server)
+            if not authenticated and server.username != 'abakus'
+                continue
+            if server.timestamp < Date.now() - (7 * 24 * 60 * 60 * 1000)
+                continue
+            server.isOk = server.timestamp > Date.now() - (15 * 60 * 1000)
+            servers.push(server)
 
         res.render('index', {
             servers: servers
