@@ -1,5 +1,6 @@
 import express
 import request
+import moment
 
 import ../config
 import ../redis
@@ -15,6 +16,7 @@ router.get('/', (req, res) ->
 
         for serverId in Object.keys(redisRes)
             server = JSON.parse(redisRes[serverId])
+            server.timesince = moment(server.timestamp).fromNow()
             if not authenticated and server.username != config.ORG_USER
                 continue
             if server.timestamp < Date.now() - config.REMOVAL_TIMEOUT

@@ -12,5 +12,6 @@ block content
         .col-xs-8
           h3 #{server.hostname}
           if authenticated
+            div.timestamp #{server.timesince}
             div.ip #{server.ip}
             div.user #{server.username}
