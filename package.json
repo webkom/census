@@ -4,48 +4,40 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "test": "ABAKUS_TOKEN=test istanbul cover node_modules/.bin/_mocha",
-    "coveralls": "npm test && node node_modules/.bin/coveralls < coverage/lcov.info"
+    "test": "ABAKUS_TOKEN=test istanbul cover _mocha dist/test",
+    "coverage": "istanbul report cobertura"
   },
   "dependencies": {
+    "bailey": "0.0.15",
     "body-parser": "^1.0.2",
     "cookie-parser": "^1.0.1",
     "cookie-session": "^1.0.2",
-    "coveralls": "^2.11.1",
     "debug": "^0.7.4",
     "express": "^4.2.0",
     "express-flash": "0.0.2",
     "express-ipfilter": "0.0.17",
     "express-session": "^1.2.0",
-    "gulp-util": "^2.2.20",
     "hjs": "~0.0.6",
     "jade": "^1.3.1",
     "memjs": "^0.8.4",
     "moment": "^2.8.4",
     "morgan": "^1.0.1",
-    "nib": "^1.0.3",
+    "nib": "^1.1.0",
     "passport": "^0.2.0",
     "passport-abakus": "^0.2.0",
     "passport-memcached": "^0.2.0",
     "redis": "^0.12.0",
     "request": "^2.36.0",
     "slugify": "^0.1.0",
-    "static-favicon": "^1.0.2"
+    "static-favicon": "^1.0.2",
+    "stylus": "^0.50.0"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "coveralls": "^2.11.1",
-    "gulp": "^3.6.2",
-    "gulp-bailey": "^0.2.0",
-    "gulp-ignore": "^1.1.0",
-    "gulp-nodemon": "^1.0.4",
-    "gulp-stylus": "^1.0.1",
-    "gulp-util": "^2.2.14",
-    "istanbul": "^0.3.0",
-    "mocha": "^1.21.4",
-    "request": "^2.40.0",
-    "should": "^4.0.4",
-    "supertest": "^0.13.0",
-    "supervisor": "^0.6.0"
+    "chai": "*",
+    "istanbul": "*",
+    "mocha": "*",
+    "should": "*",
+    "supertest": "*",
+    "supervisor": "*"
   }
 }

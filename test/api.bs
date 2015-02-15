@@ -97,7 +97,7 @@ describe('API', () ->
                         data = JSON.parse(data)
                         expect(data.hostname).to.equal('luke.abakus.no')
                         expect(data.username).to.equal('abakus')
-                        expect(data.ip).to.equal('127.0.0.1')
+                        expect(data.ip).to.equal('::ffff:127.0.0.1')
                         expect(data.timestamp).to.be.below(Date.now())
                         expect(data.timestamp).to.be.above(Date.now() - 1000 * 5)
                         done()

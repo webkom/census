@@ -16,7 +16,7 @@ import ./routes/auth
 
 app = express()
 
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname, '..', 'src', 'views'))
 app.set('view engine', 'jade')
 app.set('trust proxy', true)
 
