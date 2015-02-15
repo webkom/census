@@ -1,5 +1,4 @@
-# census
-[![Build Status](https://travis-ci.org/webkom/census.svg)](https://travis-ci.org/webkom/census) [![Coverage Status](https://coveralls.io/repos/webkom/census/badge.png?branch=master)](https://coveralls.io/r/webkom/census?branch=master)
+# census [![Build status](https://ci.frigg.io/badges/webkom/census/)](https://ci.frigg.io/webkom/census/last/) [![Coverage status](https://ci.frigg.io/badges/coverage/webkom/census/)](https://ci.frigg.io/webkom/census/last/)
 
 Headcount for our servers. It is a little web project based on express.js, which
 lists servers based on pings to its API. The servers themselves need to report
