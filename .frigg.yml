@@ -1,6 +1,6 @@
 tasks:
  - npm install
- - npm test
+ - make test
  - npm run coverage
 
 coverage:
