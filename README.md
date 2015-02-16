@@ -8,7 +8,7 @@ and a username in the POST request.
 If more than 15 minutes pass without a report, your server will show up as dead.
 
 ### Reporting
-The easiest way to report to Census is to set up a cron job that reports every ten mintues to Census. 
+The easiest way to report to Census is to set up a cron job that reports every ten mintues to Census.
 ```bash
 curl -X POST https://census.abakus.no/api/report --data "hostname={hostname}&username={username}"
 ```
@@ -21,11 +21,19 @@ npm install
 gulp
 ```
 
+### Authentication
+This project requires users to be authenticated in order to see info like IP and
+servers that does not belong to the organisation. The project uses passport for
+authentication. You can easily add you own strategy by setting the environment
+variable `PASSPORT_STRATEGY` to a package or path that require can reach. The
+strategy needs to be wrapped in a function like [passport-abakus](https://github.com/webkom/passport-abakus/blob/master/index.bs#L4).
+The options you want to pass into the function needs to be put into an environment
+variable called `PASSPORT_STRATEGY_OPTIONS`
+
 ## Tests
 ```bash
-mocha
+npm test
 ```
 
 --------
 MIT © webkom, Abakus Linjeforening
-

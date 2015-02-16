@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "test": "ABAKUS_TOKEN=test istanbul cover _mocha dist/test",
+    "test": "ABAKUS_TOKEN=test PASSPORT_STRATEGY=passport-abakus istanbul cover _mocha dist/test",
     "coverage": "istanbul report cobertura"
   },
   "dependencies": {
