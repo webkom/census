@@ -26,6 +26,7 @@
     "passport": "^0.2.0",
     "passport-abakus": "^0.2.0",
     "passport-memcached": "^0.2.0",
+    "raven": "^0.7.2",
     "redis": "^0.12.0",
     "request": "^2.36.0",
     "slugify": "^0.1.0",
