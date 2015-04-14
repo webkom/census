@@ -2,6 +2,7 @@ import express
 import request
 
 import ../redis
+import ../config
 
 router = express.Router()
 r = redis.client()
@@ -19,8 +20,10 @@ router.get('/servers', (req, res) ->
         servers = []
         redisRes = redisRes or {}
 
-        for server in Object.keys(redisRes)
-            servers.push(JSON.parse(redisRes[server]))
+        for serverId in Object.keys(redisRes)
+            server = JSON.parse(redisRes[serverId])
+            server.isOk = server.timestamp > Date.now() - config.TIMEOUT
+            servers.push(server)
 
         res.json({ servers: servers })
     )

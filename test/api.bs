@@ -5,6 +5,7 @@ import supertest as request
 
 import ../app
 import ../redis
+import ../dummy: servers
 
 r = redis.client()
 
@@ -38,8 +39,8 @@ describe('API', () ->
         )
 
         it('should object with data stored in redis ', (done) ->
-            r.hset('servers', 'luke.abakus.no', JSON.stringify(requestData))
-            r.hset('servers', 'leia.abakus.no', JSON.stringify(requestData))
+            for server in servers
+                r.hset('servers', server.hostname, JSON.stringify(server))
             request(app)
                 .get('/api/servers')
                 .expect(200)
@@ -47,9 +48,15 @@ describe('API', () ->
                     if err
                         return done(err)
 
-                    expect(res.body.servers.length).to.equal(2)
-                    expect(res.body.servers[0].username).to.equal('abakus')
-                    expect(res.body.servers[1].username).to.equal('abakus')
+                    expect(res.body.servers.length).to.equal(4)
+
+                    for res_server in res.body.servers
+                        if res_server.hostname == 'coffee.abakus.no'
+                                expect(res_server.isOk).to.be.false
+                                expect(res_server.username).to.equal('abakus')
+                        if res_server.hostname == 'luke.abakus.no'
+                                expect(res_server.isOk).to.be.true
+                                expect(res_server.username).to.equal('abakus')
                     done()
                 )
         )
