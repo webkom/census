@@ -1,6 +1,6 @@
 mixin sep
-  span.thin  |   
-    
+  span.thin  |
+
 doctype html
 html
   head
@@ -12,7 +12,7 @@ html
     link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", rel="stylesheet")
     link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css", rel="stylesheet")
     link(href='//fonts.googleapis.com/css?family=Lato:300,400,700', rel='stylesheet', type='text/css')
-    link(rel='stylesheet', href='/main.css')
+    link(rel='stylesheet', href='/static/main.css')
 
   body
     .container
@@ -26,9 +26,9 @@ html
       else
         a(href="/auth/login") Login
       +sep
-      | Made by  
-      a(href="http://webkom.abakus.no") webkom 
+      | Made by
+      a(href="http://webkom.abakus.no")  webkom
       +sep
-      a(href="https://github.com/webkom/census") Fork me on Github
+      a(href="https://github.com/webkom/census") Fork us on GitHub
 
     block js
