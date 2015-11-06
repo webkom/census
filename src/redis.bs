@@ -1,18 +1,12 @@
 import redis
+import ./config
+
 export {
     client: () ->
-        host = null
-        password = process.env.REDIS_PASSWORD
-        # istanbul ignore if
-        if process.env.NODE_ENV == 'production'
-            host = 'leia.abakus.no'
-        else
-            host = '127.0.0.1'
-
-        client = redis.createClient(6379, host, {})
+        client = redis.createClient(config.REDIS_PORT, config.REDIS_HOST, {})
 
         # istanbul ignore if
-        if password
-            client.auth(password)
+        if config.REDIS_PASSWORD
+            client.auth(config.REDIS_PASSWORD)
         return client
 }

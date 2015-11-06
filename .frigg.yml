@@ -3,6 +3,9 @@ tasks:
  - make test
  - npm run coverage
 
+services:
+ - redis-server
+
 coverage:
   path: coverage/cobertura-coverage.xml
   parser: cobertura
