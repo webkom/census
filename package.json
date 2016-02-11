@@ -23,7 +23,7 @@
     "moment": "^2.8.4",
     "morgan": "^1.0.1",
     "nib": "^1.1.0",
-    "passport": "^0.2.0",
+    "passport": "^0.3.2",
     "passport-abakus": "^0.2.0",
     "passport-memcached": "^0.2.0",
     "raven": "^0.7.2",
